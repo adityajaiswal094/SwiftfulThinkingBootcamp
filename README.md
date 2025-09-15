@@ -20,3 +20,31 @@
 - Learning about `background`s and `overlay`s.
 - In this example we learn how we can stack multiple backgrounds and overlays on top of each other, getting creative and designing complex UI with SwiftUI.
 - We can apply `background`s and `overlay`s to yet another `background` or `overlay` creating complex UI.
+
+### Lecture 5 - 
+- Learning of Stacks - `VStack`, `HStack` and `ZStack`.
+- ZStack achieves the same purpose as `background` and `overlay`.
+- Try to use `background` and `overlay` for simpler layering of components. Go for ZStack for complex or multiple layering of components.
+- Note: ZStack respects the boundary whereas background overshoots the boundary of the parent components. For example:
+```Swift
+VStack(spacing: 50) {
+    ZStack {
+        Circle()
+            .frame(width: 100, height: 100)
+        
+        Text("1")
+            .font(.title)
+            .foregroundStyle(.white)
+    }
+    
+    Text("1")
+        .font(.title)
+        .foregroundStyle(.white)
+        .background(
+            Circle()
+                .frame(width: 100, height: 100)
+        )
+}
+```
+In the above example, the bacground of Text component goes beyond the boundary of the VStack whereas ZStack respects it and stays inside it.
+- VStack and HStack are comparatively easier to use and don't have such complexities.
